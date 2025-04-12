@@ -7,12 +7,15 @@ export const metadata: Metadata = {
 }
 
 const HomePage = async () => {
-  const latestProducts = await getProducts()
+  const latestProducts = (await getProducts()).map(product => ({
+    ...product,
+    rating: Number(product.rating),
+  }))
   return (
     <div>
       <ProductList
         data={latestProducts}
-        title="Featured Products"
+        title="Newest Arrivals"
       />
     </div>
   )

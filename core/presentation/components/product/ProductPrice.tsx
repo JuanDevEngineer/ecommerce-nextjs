@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { cn } from '@/lib/utils'
 
 interface ProductPriceProps {
@@ -5,7 +6,7 @@ interface ProductPriceProps {
   className?: string
 }
 
-const ProductPrice: React.FC<ProductPriceProps> = ({ value, className }) => {
+const ProductPrice: FC<ProductPriceProps> = ({ value, className }) => {
   const stringValue = value.toFixed(2)
   const [intValue, floatValue] = stringValue.split('.')
 

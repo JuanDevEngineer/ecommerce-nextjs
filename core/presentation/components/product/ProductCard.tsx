@@ -1,14 +1,16 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ProductPrice } from "./ProductPrice";
-import { Product } from "@/core/infrastructure/types";
+import Image from 'next/image'
+import Link from 'next/link'
+import { FC } from 'react'
+
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { ProductPrice } from './ProductPrice'
+import { Product } from '@/core/infrastructure/types'
 
 interface ProductCardProps {
-  product: Product;
+  product: Product
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: FC<ProductCardProps> = ({ product }) => {
   return (
     <Card className="w-full p-0 max-w-sm">
       <CardHeader className="p-0 m-0 items-center">
