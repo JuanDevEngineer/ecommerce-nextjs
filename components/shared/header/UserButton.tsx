@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Role } from '@/core/domain/enums/role'
-import { signOutUser } from '@/core/presentation/actions/auth/user.actions'
+import { signOutUser } from '@/core/presentation/actions/auth/auth.actions'
 import Link from 'next/link'
 
 const UserButton = async () => {

@@ -24,7 +24,7 @@ import { Input } from '@/components/ui/input'
 import { ShippingAddress } from '@/core/infrastructure/types'
 import { shippingAddressSchema } from '@/core/infrastructure/validators/shipping'
 import { shippingAddressDefaultValues } from '@/lib/constants'
-import { updateUserAddress } from '../../actions/auth/user.actions'
+import { updateUserAddress } from '../../actions/user/user.actions'
 
 interface ShippingAddressFormProps {
   address?: ShippingAddress | null

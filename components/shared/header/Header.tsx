@@ -4,7 +4,7 @@ import { Menu } from './Menu'
 
 import { APP_NAME } from '@/lib/constants'
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <header className="w-full border-b">
       <div className="wrapper flex-between">

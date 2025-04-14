@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { auth } from '@/auth'
-import { getUserById } from '@/core/presentation/actions/auth/user.actions'
+import { getUserById } from '@/core/presentation/actions/user/user.actions'
 import { getMyCart } from '@/core/presentation/actions/cart/cart.actions'
 import { ShippingAddress } from '@/core/infrastructure/types'
 

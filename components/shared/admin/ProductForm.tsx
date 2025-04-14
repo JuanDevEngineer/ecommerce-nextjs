@@ -30,6 +30,10 @@ import {
 } from '@/core/presentation/actions/product/product.actions'
 import { CheckCircle, XCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { Card, CardContent } from '@/components/ui/card'
+import { UploadButton } from '@/lib/uploadthing'
+import { Checkbox } from '@/components/ui/checkbox'
 
 interface ProductFormProps {
   type: 'Create' | 'Update'
@@ -53,19 +57,22 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
   const onSubmit: SubmitHandler<z.infer<typeof insertProductSchema>> = async (
     values
   ) => {
+    console.log('Form Values:', values)
+    console.log('Form Type:', type)
+    // return
+
     if (type === 'Create') {
       const res = await createProduct(values)
 
       if (!res.success) {
         toast.error(res.message, {
-          description: res.message,
           icon: <XCircle className="text-red-500" />,
         })
       } else {
         toast.success(res.message, {
-          description: res.message,
           icon: <CheckCircle className="text-green-500" />,
         })
+        form.reset()
         router.push(`/admin/products`)
       }
     }
@@ -79,7 +86,6 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
 
       if (!res.success) {
         toast.error(res.message, {
-          description: res.message,
           icon: <XCircle className="text-red-500" />,
         })
       } else {
@@ -87,6 +93,12 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
       }
     }
   }
+
+  const images = form.watch('images')
+  const isFeatured = form.watch('isFeatured')
+  const banner = form.watch('banner')
+
+  console.log('Form Values:', form.getValues())
 
   return (
     <Form {...form}>
@@ -244,18 +256,59 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
           />
         </div>
 
-        <div className="upload-field flex flex-col md:flex-row gap-5"></div>
+        <div className="upload-field flex flex-col md:flex-row gap-5">
+          {/* Images */}
+          <FormField
+            control={form.control}
+            name="images"
+            render={() => (
+              <FormItem className="w-full">
+                <FormLabel>Images</FormLabel>
+                <Card>
+                  <CardContent className="space-y-2 mt-2 min-h-48">
+                    <div className="flex-start space-x-2">
+                      {images.map((image: string) => (
+                        <Image
+                          key={image}
+                          src={image}
+                          alt="product image"
+                          className="w-20 h-20 object-cover object-center rounded-sm"
+                          width={100}
+                          height={100}
+                        />
+                      ))}
+                      <FormControl>
+                        <UploadButton
+                          endpoint="imageUploader"
+                          onClientUploadComplete={(res: { url: string }[]) => {
+                            form.setValue('images', [...images, res[0].url])
+                          }}
+                          onUploadError={(error: Error) => {
+                            toast.error(error.message, {
+                              icon: <XCircle className="text-red-500" />,
+                            })
+                          }}
+                        />
+                      </FormControl>
+                    </div>
+                  </CardContent>
+                </Card>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <div className="upload-field">
           {/* isFeatured */}
           Featured Product
-          {/* <Card>
-            <CardContent className='space-y-2 mt-2'>
+          <Card>
+            <CardContent className="space-y-2 mt-2">
               <FormField
                 control={form.control}
-                name='isFeatured'
+                name="isFeatured"
                 render={({ field }) => (
-                  <FormItem className='space-x-2 items-center'>
+                  <FormItem className="space-x-2 items-center">
                     <FormControl>
                       <Checkbox
                         checked={field.value}
@@ -269,8 +322,8 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
               {isFeatured && banner && (
                 <Image
                   src={banner}
-                  alt='banner image'
-                  className='w-full object-cover object-center rounded-sm'
+                  alt="banner image"
+                  className="w-full object-cover object-center rounded-sm"
                   width={1920}
                   height={680}
                 />
@@ -278,20 +331,19 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
 
               {isFeatured && !banner && (
                 <UploadButton
-                  endpoint='imageUploader'
+                  endpoint="imageUploader"
                   onClientUploadComplete={(res: { url: string }[]) => {
-                    form.setValue('banner', res[0].url);
+                    form.setValue('banner', res[0].url)
                   }}
                   onUploadError={(error: Error) => {
-                    toast({
-                      variant: 'destructive',
-                      description: `ERROR! ${error.message}`,
-                    });
+                    toast.error(error.message, {
+                      icon: <XCircle className="text-red-500" />,
+                    })
                   }}
                 />
               )}
             </CardContent>
-          </Card> */}
+          </Card>
         </div>
 
         <div>
@@ -327,7 +379,7 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
             type="submit"
             size="lg"
             disabled={form.formState.isSubmitting}
-            className="button col-span-2 w-full"
+            className="col-span-2 bg-yellow-400 text-white font-bold hover:bg-yellow-500 w-full"
           >
             {form.formState.isSubmitting ? 'Submitting' : `${type} Product`}
           </Button>

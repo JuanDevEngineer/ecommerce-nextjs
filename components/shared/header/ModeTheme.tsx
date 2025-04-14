@@ -13,7 +13,7 @@ import { MoonIcon, SunMoon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
-const ModeTheme: React.FC = () => {
+const ModeTheme = () => {
   const [mounted, setMounted] = useState<boolean>(false)
   const { theme, setTheme } = useTheme()
 

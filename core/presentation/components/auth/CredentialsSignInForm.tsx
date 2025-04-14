@@ -1,18 +1,17 @@
 'use client'
 
+import { useActionState } from 'react'
+
 import Link from 'next/link'
-import { FC, useActionState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { signInDefaultValues } from '@/lib/constants'
-import { signInWithCredentials } from '../../actions/auth/user.actions'
+import { signInWithCredentials } from '../../actions/auth/auth.actions'
 import { SignInButton } from './SignInButton'
-import { useSearchParams } from 'next/navigation'
 
-interface CredentialsSignInFormProps {}
-
-const CredentialsSignInForm: FC<CredentialsSignInFormProps> = () => {
+const CredentialsSignInForm = () => {
   const [data, action] = useActionState(signInWithCredentials, {
     message: '',
     success: false,

@@ -11,7 +11,7 @@ import { formatCurrency, formatId } from '@/lib/utils'
 import { DeleteDialog } from '@/components/shared/DeleteDialog'
 
 export const metadata: Metadata = {
-  title: 'Products',
+  title: 'Admin Products',
   description: 'Admin Dashboard',
 }
 
@@ -39,6 +39,16 @@ const ProductsAdminPage = async (props: {
     <div className="space-y-2">
       <div className="flex-between">
         <h1 className="h2-bold">Products</h1>
+        {searchText && (
+          <div>
+            Filtered by <i>&quot;{searchText}&quot;</i>{' '}
+            <Link href={`/admin/products`}>
+              <Button variant='outline' size='sm'>
+                Remove Filter
+              </Button>
+            </Link>
+          </div>
+        )}
         <Button asChild variant='default'>
           <Link href='/admin/products/create'>Create Product</Link>
         </Button>
@@ -57,6 +67,13 @@ const ProductsAdminPage = async (props: {
             </TableRow>
           </TableHeader>
           <TableBody>
+            {products?.data.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={6} className="text-center">
+                  No products found
+                </TableCell>
+              </TableRow>
+            )}
             {products?.data.map((product) => (
               <TableRow key={product.id}>
                 <TableCell>{formatId(product.id)}</TableCell>
@@ -78,7 +95,7 @@ const ProductsAdminPage = async (props: {
             ))}
           </TableBody>
         </Table>
-        {products?.totalPages && products.totalPages > 1 && (
+        {products?.totalPages > 1 && (
           <Pagination page={page} totalPages={products.totalPages} />
         )}
       </div>

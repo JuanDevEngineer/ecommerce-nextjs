@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { ModeTheme } from './ModeTheme'
 import Link from 'next/link'
-import { EllipsisVertical, ShoppingCart, UserIcon } from 'lucide-react'
+import { EllipsisVertical, ShoppingCart } from 'lucide-react'
 import {
   Sheet,
   SheetContent,
@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/sheet'
 import { UserButton } from './UserButton'
 
-const Menu: React.FC = () => {
+const Menu = () => {
   return (
     <div className="flex justify-end gap-3">
       <nav className="hidden md:flex w-full max-w-xs gap-1">

@@ -23,15 +23,15 @@ import { requireAdmin } from '@/lib/authguard'
 import { formatCurrency, formatDateTime, formatId } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: 'Orders',
+  title: 'Admin Orders',
   description: 'Admin Dashboard',
 }
 
 const OrderAdminPage = async (props: {
-  searchParams: Promise<{ page: string }>
+  searchParams: Promise<{ page: string; query: string }>
 }) => {
   await requireAdmin()
-  const { page = '1' } = await props.searchParams
+  const { page = '1', query: searchText } = await props.searchParams
 
   const session = await auth()
   if (session?.user.role !== Role.ADMIN)
@@ -39,11 +39,22 @@ const OrderAdminPage = async (props: {
 
   const orders = await getAllOrders({
     page: Number(page),
+    query: searchText,
   })
 
   return (
     <div className="space-y-2">
       <h2 className="h2-bold">Orders</h2>
+      {searchText && (
+        <div>
+          Filtered by <i>&quot;{searchText}&quot;</i>{' '}
+          <Link href={`/admin/orders`}>
+            <Button variant="outline" size="sm">
+              Remove Filter
+            </Button>
+          </Link>
+        </div>
+      )}
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
@@ -57,6 +68,13 @@ const OrderAdminPage = async (props: {
             </TableRow>
           </TableHeader>
           <TableBody>
+            {orders.data.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={6} className="text-center">
+                  No orders found
+                </TableCell>
+              </TableRow>
+            )}
             {orders.data.map((order) => (
               <TableRow key={order.id}>
                 <TableCell>{formatId(order.id)}</TableCell>
@@ -85,7 +103,7 @@ const OrderAdminPage = async (props: {
             ))}
           </TableBody>
         </Table>
-        {orders.totalPages > 1 && (
+        {orders?.totalPages > 1 && (
           <Pagination
             page={Number(page) || 1}
             totalPages={orders?.totalPages}

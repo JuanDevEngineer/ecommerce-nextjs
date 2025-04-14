@@ -1,3 +1,5 @@
+import { Role } from "@/core/domain/enums/role";
+
 export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || 'E-commerce'
 export const APP_DESCRIPTION = process.env.NEXT_PUBLIC_APP_DESCRIPTION || '...'
 export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
@@ -39,3 +41,7 @@ export const productDefaultValues = {
   isFeatured: false,
   banner: null,
 }
+
+export const USER_ROLES = process.env.USER_ROLES
+  ? process.env.USER_ROLES.split(', ')
+  : [Role.ADMIN, Role.USER]

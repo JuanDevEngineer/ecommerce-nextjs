@@ -5,7 +5,7 @@ import { auth } from '@/auth'
 
 import { ShippingAddress } from '@/core/infrastructure/types'
 import { getMyCart } from '@/core/presentation/actions/cart/cart.actions'
-import { getUserById } from '@/core/presentation/actions/auth/user.actions'
+import { getUserById } from '@/core/presentation/actions/user/user.actions'
 import { ShippingAddressForm } from '@/core/presentation/components/shipping/ShippingAddressForm'
 import { CheckoutSteps } from '@/components/shared/CheckoutSteps'
 

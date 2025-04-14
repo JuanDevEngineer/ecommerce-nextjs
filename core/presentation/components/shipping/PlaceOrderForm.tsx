@@ -1,12 +1,11 @@
 'use client'
 
-import { FC } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { createOrder } from '../../actions/order/order.actions'
 import { PlaceOrderButton } from './PlaceOrderButton'
 
-const PlaceOrderForm: FC = () => {
+const PlaceOrderForm = () => {
   const router = useRouter()
 
   const handleSubmit = async (event: React.FormEvent) => {

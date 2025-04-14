@@ -21,7 +21,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { updateUserPaymentMethod } from '../../actions/auth/user.actions'
+import { updateUserPaymentMethod } from '../../actions/user/user.actions'
 
 interface PaymentMethodFormProps {
   preferredPaymentMethod: string | null

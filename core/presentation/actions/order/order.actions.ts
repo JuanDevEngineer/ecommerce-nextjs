@@ -6,11 +6,10 @@ import { Prisma } from '@prisma/client'
 
 import { auth } from '@/auth'
 import { getMyCart } from '../cart/cart.actions'
-import { getUserById } from '../auth/user.actions'
-
-import { insertOrderSchema } from '@/core/infrastructure/validators/shipping'
+import { getUserById } from '../user/user.actions'
 
 import { CartItem, PaymentResult } from '@/core/infrastructure/types'
+import { insertOrderSchema } from '@/core/infrastructure/validators/shipping'
 
 import { prisma } from '@/db/prisma'
 import { convertToPlainObject, formatError } from '@/lib/utils'
@@ -344,11 +343,29 @@ export async function getOrderSummary() {
 export async function getAllOrders({
   limit = PAGE_SIZE,
   page,
+  query,
 }: {
   limit?: number
   page: number
+  query: string
 }) {
+  const queryFilter: Prisma.OrderWhereInput =
+    query && query !== 'all'
+      ? {
+          user: {
+            name: {
+              contains: query,
+              mode: 'insensitive',
+            } as Prisma.StringFilter,
+
+          },
+        }
+      : {}
+
   const data = await prisma.order.findMany({
+    where: {
+      ...queryFilter,
+    },
     orderBy: { createdAt: 'desc' },
     take: limit,
     skip: (page - 1) * limit,

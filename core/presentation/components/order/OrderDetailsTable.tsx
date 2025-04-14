@@ -211,6 +211,7 @@ const OrderDetailsTable: FC<OrderDetailsTableProps> = ({
                 <MarkAsPaidButton id={order.id} />
               )}
               
+              {/* isAdmin mark Delivery */}
               {isAdmin && isPaid && !isDelivered && (
                 <MarkAsDeliveredButton id={order.id} />
               )}

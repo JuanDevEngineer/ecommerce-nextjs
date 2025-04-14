@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 import { signUpDefaultValues } from '@/lib/constants'
-import { signUp } from '../../actions/auth/user.actions'
+import { signUp } from '../../actions/auth/auth.actions'
 import { SignUpButton } from './SignUpButton'
 
 const CredentialsSignUpForm = () => {

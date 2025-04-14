@@ -16,7 +16,7 @@ import {
 import { Prisma } from '@prisma/client'
 
 // Calculate cart price based on items
-const calcPrice = (items: z.infer<typeof cartItemSchema>[]) => {
+function calcPrice(items: z.infer<typeof cartItemSchema>[]) {
   const itemsPrice = round2(
       items.reduce((acc, item) => acc + Number(item.price) * item.qty, 0)
     ),

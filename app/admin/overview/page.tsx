@@ -56,7 +56,7 @@ const AdminOverviewPage = async () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {formatCurrency(summary.totalSales._sum.totalPrice!.toString())}
+              {formatCurrency(summary.totalSales._sum.totalPrice?.toString() ?? 0)}
             </div>
           </CardContent>
         </Card>
@@ -97,6 +97,11 @@ const AdminOverviewPage = async () => {
           </CardHeader>
           <CardContent className="pl-2">
             {/* CHART */}
+            {summary.salesData.length === 0 && (
+              <div className="text-center flex items-center h-full justify-center text-sm text-muted-foreground">
+                No sales data available
+              </div>
+            )}
             <Charts
               data={{
                 salesData: summary.salesData,
@@ -119,6 +124,13 @@ const AdminOverviewPage = async () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
+                {summary.latestOrders.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={4} className="text-center">
+                      No recent orders found
+                    </TableCell>
+                  </TableRow>
+                )}
                 {summary.latestOrders.map((order) => (
                   <TableRow key={order.id}>
                     <TableCell>
