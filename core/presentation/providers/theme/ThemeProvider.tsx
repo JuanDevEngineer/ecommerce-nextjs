@@ -6,7 +6,7 @@ interface ThemeProps {
   children: React.ReactNode
 }
 
-const Theme: React.FC<ThemeProps> = ({ children }) => {
+const Theme = ({ children }: ThemeProps) => {
   return (
     <ThemeProvider
       attribute="class"

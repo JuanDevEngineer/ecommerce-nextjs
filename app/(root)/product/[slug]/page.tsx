@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { notFound } from 'next/navigation'
 
 import { Badge } from '@/components/ui/badge'
@@ -11,12 +10,10 @@ import { getProductById } from '@/core/presentation/actions/product/product.acti
 import { AddToCart } from '@/core/presentation/components/product/AddToCart'
 import { getMyCart } from '@/core/presentation/actions/cart/cart.actions'
 
-interface ProductDetailspageProps {
+const ProductDetailspage = async (props: {
   params: Promise<{ slug: string }>
-}
-
-const ProductDetailspage: FC<ProductDetailspageProps> = async ({ params }) => {
-  const { slug } = await params
+}) => {
+  const { slug } = await props.params
   const product = await getProductById(slug)
 
   if (!product) {

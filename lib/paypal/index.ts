@@ -39,8 +39,6 @@ export const paypal = {
     })
     return await handleResponse(response)
   },
-
-  paymentResult: async function paymentResult(orderId: string) {}
 }
 
 export async function generateAccessToken() {

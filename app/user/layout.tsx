@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   description: 'User dashboard',
 }
 
-export default function UserLayout({
+const UserLayout = ({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) => {
   return (
     <>
       <div className="flex flex-col">
@@ -44,3 +44,5 @@ export default function UserLayout({
     </>
   )
 }
+
+export default UserLayout

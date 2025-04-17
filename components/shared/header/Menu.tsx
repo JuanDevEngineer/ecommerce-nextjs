@@ -1,7 +1,9 @@
-import { Button } from '@/components/ui/button'
-import { ModeTheme } from './ModeTheme'
 import Link from 'next/link'
 import { EllipsisVertical, ShoppingCart } from 'lucide-react'
+
+import { ModeTheme } from './ModeTheme'
+import { UserButton } from './UserButton'
+
 import {
   Sheet,
   SheetContent,
@@ -9,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { UserButton } from './UserButton'
+import { Button } from '@/components/ui/button'
 
 const Menu = () => {
   return (

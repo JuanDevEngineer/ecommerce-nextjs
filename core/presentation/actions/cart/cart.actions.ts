@@ -2,7 +2,6 @@
 
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
-import { z } from 'zod'
 
 import { CartItem } from '@/core/infrastructure/types'
 
@@ -16,7 +15,7 @@ import {
 import { Prisma } from '@prisma/client'
 
 // Calculate cart price based on items
-function calcPrice(items: z.infer<typeof cartItemSchema>[]) {
+function calcPrice(items: CartItem[]) {
   const itemsPrice = round2(
       items.reduce((acc, item) => acc + Number(item.price) * item.qty, 0)
     ),

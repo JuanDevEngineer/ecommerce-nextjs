@@ -6,11 +6,11 @@ import { Menu } from '@/components/shared/header/Menu'
 import { MainNav } from '@/core/presentation/components/admin/MainNav'
 import { AdminSearch } from '@/core/presentation/components/admin/AdminSearch'
 
-export default async function AdminLayout({
+const AdminLayout = async ({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) => {
   return (
     <>
       <div className="flex flex-col">
@@ -24,7 +24,6 @@ export default async function AdminLayout({
                 alt={`${APP_NAME} logo`}
               />
             </Link>
-            {/* MAIN NAV HERE */}
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
               <AdminSearch />
@@ -39,3 +38,5 @@ export default async function AdminLayout({
     </>
   )
 }
+
+export default AdminLayout

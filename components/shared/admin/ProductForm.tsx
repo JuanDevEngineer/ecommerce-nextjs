@@ -2,8 +2,8 @@
 
 import { FC } from 'react'
 import { useRouter } from 'next/navigation'
-import { z } from 'zod'
 import { ControllerRenderProps, SubmitHandler, useForm } from 'react-hook-form'
+import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import slugify from 'slugify'
 import { toast } from 'sonner'
@@ -46,11 +46,11 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
 
   const form = useForm<z.infer<typeof insertProductSchema>>({
     resolver:
-      type === 'Update'
-        ? zodResolver(updateProductSchema)
-        : zodResolver(insertProductSchema),
+      type === 'Create'
+        ? zodResolver(insertProductSchema)
+        : zodResolver(updateProductSchema),
     defaultValues:
-      product && type === 'Update' ? product : productDefaultValues,
+      product && type === 'Create' ? productDefaultValues : product!,
   })
 
   // Handle form submit

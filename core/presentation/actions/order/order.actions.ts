@@ -240,13 +240,13 @@ export async function getMyOrders({
 }
 
 // Update Order to Paid in Database
-const updateOrderToPaid = async ({
+async function updateOrderToPaid({
   orderId,
   paymentResult,
 }: {
   orderId: string
   paymentResult?: PaymentResult
-}) => {
+}) {
   // Find the order in the database and include the order items
   const order = await prisma.order.findFirst({
     where: {

@@ -40,7 +40,7 @@ export function formatError(error: any): string {
 }
 
 // Round to 2 decimal places
-export const round2 = (value: number | string) => {
+export function round2(value: number | string) {
   if (typeof value === 'number') {
     return Math.round((value + Number.EPSILON) * 100) / 100 // avoid rounding errors
   } else if (typeof value === 'string') {
@@ -70,7 +70,7 @@ export function formatId(id: string) {
   return `..${id.substring(id.length - 6)}`
 }
 
-export const formatDateTime = (dateString: Date) => {
+export function formatDateTime(dateString: Date) {
   const dateTimeOptions: Intl.DateTimeFormatOptions = {
     month: 'short', // abbreviated month name (e.g., 'Oct')
     year: 'numeric', // abbreviated month name (e.g., 'Oct')

@@ -11,6 +11,7 @@ import {
 } from '@/core/infrastructure/validators/product'
 import { z } from 'zod'
 import { Prisma } from '@prisma/client'
+import { Product } from '@/core/infrastructure/types'
 
 export async function getProducts() {
   const products = await prisma.product.findMany({
@@ -141,14 +142,13 @@ export async function deleteProduct(id: string) {
 }
 
 // Create Product
-export async function createProduct(data: z.infer<typeof insertProductSchema>) {
+export async function createProduct(data: Product) {
   try {
     // Validate and create product
     const product = insertProductSchema.parse(data)
     await prisma.product.create({ data: product })
 
     revalidatePath('/admin/products')
-
     return {
       success: true,
       message: 'Product created successfully',

@@ -1,6 +1,10 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { useEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
+
+import { MoonIcon, SunMoon } from 'lucide-react'
+
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -9,9 +13,7 @@ import {
   DropdownMenuContent,
   DropdownMenuCheckboxItem,
 } from '@/components/ui/dropdown-menu'
-import { MoonIcon, SunMoon } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 const ModeTheme = () => {
   const [mounted, setMounted] = useState<boolean>(false)

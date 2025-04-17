@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+
 import { APP_NAME, SERVER_URL } from '@/lib/constants'
 
 import { Theme } from '@/core/presentation/providers/theme/ThemeProvider'
 import { Toaster } from '@/components/ui/sonner'
+
 import '@/assets/styles/globals.css'
 
 const inter = Inter({
