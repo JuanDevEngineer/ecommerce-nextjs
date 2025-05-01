@@ -12,6 +12,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
+import { Search } from './Search'
 
 const Menu = () => {
   return (
@@ -31,7 +32,7 @@ const Menu = () => {
           <SheetTrigger className="align-middle">
             <EllipsisVertical />
           </SheetTrigger>
-          <SheetContent className="flex flex-col items-start wrapper">
+          <SheetContent className="flex flex-col items-start w-full max-w-3xl lg:mx-auto p-5 md:px-10">
             <SheetTitle className="font-bold">Menu</SheetTitle>
             <ModeTheme />
             <Button asChild variant="ghost">
@@ -41,6 +42,9 @@ const Menu = () => {
             </Button>
             <UserButton />
             <SheetDescription></SheetDescription>
+            <div className='mt-5'>
+              <Search />
+            </div>
           </SheetContent>
         </Sheet>
       </nav>

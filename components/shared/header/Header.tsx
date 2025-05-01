@@ -2,15 +2,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Menu } from './Menu'
+import { Search } from './Search'
 
 import { APP_NAME } from '@/lib/constants'
+import { CategoriesDrawer } from './CategoriesDrawer'
 
 const Header = () => {
   return (
     <header className="w-full border-b">
       <div className="wrapper flex-between">
         <div className="flex-start">
-          <Link href="/" className="flex-start">
+          <CategoriesDrawer />
+          <Link href="/" className="flex-start ml-4">
             <Image
               src="/images/logo.svg"
               alt={`${APP_NAME} logo`}
@@ -22,6 +25,9 @@ const Header = () => {
               {APP_NAME}
             </span>
           </Link>
+        </div>
+        <div className='hidden md:block'>
+          <Search />
         </div>
         <Menu />
       </div>
