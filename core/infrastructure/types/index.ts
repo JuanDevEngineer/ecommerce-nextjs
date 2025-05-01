@@ -7,6 +7,7 @@ import {
   shippingAddressSchema,
 } from '../validators/shipping'
 import { paymentResultSchema } from '../validators/paypal'
+import { insertReviewSchema } from '../validators/review'
 
 export type Product = z.infer<typeof insertProductSchema> & {
   id: string
@@ -34,3 +35,9 @@ export type Order = z.infer<typeof insertOrderSchema> & {
 }
 
 export type PaymentResult = z.infer<typeof paymentResultSchema>
+
+export type Review = z.infer<typeof insertReviewSchema> & {
+  id: string
+  createdAt: Date
+  user?: { name: string }
+}

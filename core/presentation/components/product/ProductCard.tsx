@@ -5,6 +5,7 @@ import { FC } from 'react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { ProductPrice } from './ProductPrice'
 import { Product } from '@/core/infrastructure/types'
+import { Rating } from '@/components/shared/product/Rating'
 
 interface ProductCardProps {
   product: Product
@@ -31,7 +32,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
           <h2 className="text-sm font-medium">{product.name}</h2>
         </Link>
         <div className="flex-between gap-4">
-          <p className="">{product.rating} Star</p>
+          <Rating value={Number(product.rating)} />
           {product.stock > 0 ? (
             <ProductPrice value={Number(product.price)} />
           ) : (
