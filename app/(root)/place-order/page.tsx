@@ -20,7 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { PlaceOrderForm } from '@/core/presentation/components/shipping/PlaceOrderForm'
+import { PlaceOrderForm } from '@/components/shared/shipping/PlaceOrderForm'
 
 export const metadata: Metadata = {
   title: 'Place Order',

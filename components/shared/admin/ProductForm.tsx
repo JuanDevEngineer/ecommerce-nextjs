@@ -57,10 +57,6 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
   const onSubmit: SubmitHandler<z.infer<typeof insertProductSchema>> = async (
     values
   ) => {
-    console.log('Form Values:', values)
-    console.log('Form Type:', type)
-    // return
-
     if (type === 'Create') {
       const res = await createProduct(values)
 
@@ -97,8 +93,6 @@ const ProductForm: FC<ProductFormProps> = ({ type, product, productId }) => {
   const images = form.watch('images')
   const isFeatured = form.watch('isFeatured')
   const banner = form.watch('banner')
-
-  console.log('Form Values:', form.getValues())
 
   return (
     <Form {...form}>

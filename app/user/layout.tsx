@@ -5,7 +5,7 @@ import { Metadata } from 'next'
 import { APP_NAME } from '@/lib/constants'
 import { Menu } from '@/components/shared/header/Menu'
 
-import { MainNav } from '@/core/presentation/components/user/MainNav'
+import { MainNav } from '@/components/shared/user/MainNav'
 
 export const metadata: Metadata = {
   title: `User | Dashboard`,

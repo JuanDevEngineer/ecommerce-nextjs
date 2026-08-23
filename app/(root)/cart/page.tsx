@@ -1,5 +1,5 @@
 import { getMyCart } from '@/core/presentation/actions/cart/cart.actions'
-import { CartTable } from '@/core/presentation/components/cart/CartTable'
+import { CartTable } from '@/components/shared/cart/CartTable'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

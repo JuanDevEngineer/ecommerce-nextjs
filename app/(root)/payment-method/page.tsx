@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { auth } from '@/auth'
 import { CheckoutSteps } from '@/components/shared/CheckoutSteps'
 import { getUserById } from '@/core/presentation/actions/user/user.actions'
-import { PaymentMethodForm } from '@/core/presentation/components/shipping/PaymentMethodForm'
+import { PaymentMethodForm } from '@/components/shared/shipping/PaymentMethodForm'
 
 export const metadata: Metadata = {
   title: 'Payment Method',

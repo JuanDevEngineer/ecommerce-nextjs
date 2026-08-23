@@ -20,12 +20,13 @@ export const USER_ROLES = process.env.USER_ROLES
   ? process.env.USER_ROLES.split(', ')
   : [Role.ADMIN, Role.USER]
 
-export const SENDER_EMAIL = ''
+export const SENDER_EMAIL = process.env.SENDER_EMAIL || 'restrepojuanjose8@gmail.com'
 
 export const signInDefaultValues = {
   email: '',
   password: '',
 }
+
 export const signUpDefaultValues = {
   name: '',
   email: '',

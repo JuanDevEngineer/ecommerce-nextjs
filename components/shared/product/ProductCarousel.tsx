@@ -15,7 +15,7 @@ import {
 import { Product } from '@/core/infrastructure/types'
 
 const ProductCarousel = ({ data }: { data: Product[] }) => {
-  console.log('ProductCarousel', data)
+  console.log(data)
   return (
     <Carousel
       className="w-full mb-12"

@@ -3,14 +3,14 @@ import { notFound } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 
-import { ProductPrice } from '@/core/presentation/components/product/ProductPrice'
-import { ProductImages } from '@/core/presentation/components/product/ProductImages'
+import { ProductPrice } from '@/components/shared/product/ProductPrice'
+import { ProductImages } from '@/components/shared/product/ProductImages'
 
 import { getProductById } from '@/core/presentation/actions/product/product.actions'
-import { AddToCart } from '@/core/presentation/components/product/AddToCart'
+import { AddToCart } from '@/components/shared/product/AddToCart'
 import { getMyCart } from '@/core/presentation/actions/cart/cart.actions'
 import { auth } from '@/auth'
-import { ReviewList } from '@/core/presentation/components/product/ReviewList'
+import { ReviewList } from '@/components/shared/product/ReviewList'
 import { Rating } from '@/components/shared/product/Rating'
 
 const ProductDetailspage = async (props: {

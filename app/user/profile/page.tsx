@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { SessionProvider } from 'next-auth/react'
 
-import { ProfileForm } from '@/core/presentation/components/user/ProfileForm'
+import { ProfileForm } from '@/components/shared/user/ProfileForm'
 import { auth } from '@/auth'
 
 export const metadata: Metadata = {

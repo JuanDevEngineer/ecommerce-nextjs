@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 import { APP_NAME } from '@/lib/constants'
 import { Menu } from '@/components/shared/header/Menu'
-import { MainNav } from '@/core/presentation/components/admin/MainNav'
-import { AdminSearch } from '@/core/presentation/components/admin/AdminSearch'
+import { MainNav } from '@/components/shared/admin/MainNav'
+import { AdminSearch } from '@/components/shared/admin/AdminSearch'
 
 const AdminLayout = async ({
   children,

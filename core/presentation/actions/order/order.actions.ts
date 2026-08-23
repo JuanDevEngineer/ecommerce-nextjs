@@ -8,13 +8,14 @@ import { auth } from '@/auth'
 import { getMyCart } from '../cart/cart.actions'
 import { getUserById } from '../user/user.actions'
 
-import { CartItem, PaymentResult } from '@/core/infrastructure/types'
+import { CartItem, PaymentResult, ShippingAddress } from '@/core/infrastructure/types'
 import { insertOrderSchema } from '@/core/infrastructure/validators/shipping'
 
 import { prisma } from '@/db/prisma'
 import { convertToPlainObject, formatError } from '@/lib/utils'
 import { paypal } from '@/lib/paypal'
 import { PAGE_SIZE } from '@/lib/constants'
+import { sendPurchaseReceipt } from '@/email'
 
 type SalesDataType = {
   month: string
@@ -240,7 +241,7 @@ export async function getMyOrders({
 }
 
 // Update Order to Paid in Database
-async function updateOrderToPaid({
+export async function updateOrderToPaid({
   orderId,
   paymentResult,
 }: {
@@ -296,6 +297,14 @@ async function updateOrderToPaid({
   if (!updatedOrder) {
     throw new Error('Order not found')
   }
+
+  sendPurchaseReceipt({
+    order: {
+      ...updatedOrder,
+      shippingAddress: updatedOrder.shippingAddress as ShippingAddress,
+      paymentResult: updatedOrder.paymentResult as PaymentResult
+    }
+  })
 }
 
 // Get sales data and order summary

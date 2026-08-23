@@ -6,10 +6,10 @@ import { cookies } from 'next/headers'
 
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { PrismaAdapter } from '@auth/prisma-adapter'
-import { compareSync } from 'bcrypt-ts-edge'
 
 import { prisma } from '@/db/prisma'
 import { authConfig } from './auth.config'
+import { compare } from './lib/encrypt'
 
 export const config = {
   pages: {
@@ -18,7 +18,7 @@ export const config = {
     newUser: '/sign-up',
   },
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt' as const,
     maxAge: 30 * 24 * 60 * 60,
   },
   adapter: PrismaAdapter(prisma),
@@ -38,7 +38,7 @@ export const config = {
         })
 
         if (user && user.password) {
-          const isMatch = compareSync(
+          const isMatch = await compare(
             credentials.password as string,
             user.password
           )

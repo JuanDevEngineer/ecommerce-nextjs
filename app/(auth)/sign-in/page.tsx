@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { APP_NAME } from '@/lib/constants'
-import { CredentialsSignInForm } from '@/core/presentation/components/auth/CredentialsSignInForm'
+import { CredentialsSignInForm } from '@/components/shared/auth/CredentialsSignInForm'
 import { auth } from '@/auth'
 
 export const metadata: Metadata = {

@@ -19,7 +19,7 @@ import { Role } from '@/core/domain/enums/role'
 import { getOrderSummary } from '@/core/presentation/actions/order/order.actions'
 import { formatCurrency, formatDateTime } from '@/lib/utils'
 import { requireAdmin } from '@/lib/authguard'
-import { Charts } from '@/core/presentation/components/admin/overview/Charts'
+import { Charts } from '@/components/shared/admin/overview/Charts'
 
 //  Format Numbers
 const NUMBER_FORMATTER = new Intl.NumberFormat('en-US')

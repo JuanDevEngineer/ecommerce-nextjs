@@ -1,34 +1,39 @@
 import { Metadata } from 'next'
-import { ProductList } from '@/core/presentation/components/product/ProductList'
-import { getFeaturedProducts, getProducts } from '@/core/presentation/actions/product/product.actions'
+import { IconBoxes } from '@/components/shared/IconBoxes'
+import { DealCountdown } from '@/components/shared/DealCountdown'
 import { ProductCarousel } from '@/components/shared/product/ProductCarousel'
-import { ViewAllProductsButton } from '@/core/presentation/components/product/ViewAllProductsButton'
+import { ProductList } from '@/components/shared/product/ProductList'
+import { ViewAllProductsButton } from '@/components/shared/product/ViewAllProductsButton'
+
+import {
+  getFeaturedProducts,
+  getProducts,
+} from '@/core/presentation/actions/product/product.actions'
 
 export const metadata: Metadata = {
   title: 'Home',
 }
 
 const HomePage = async () => {
-  const latestProducts = (await getProducts()).map(product => ({
+  const latestProducts = (await getProducts()).map((product) => ({
     ...product,
     rating: Number(product.rating),
   }))
 
-  const featuredProducts = (await getFeaturedProducts()).map(product => ({
+  const featuredProducts = (await getFeaturedProducts()).map((product) => ({
     ...product,
     rating: Number(product.rating),
   }))
-
-  console.log('HomePage',featuredProducts)
 
   return (
     <div>
-      {featuredProducts.length > 0 && <ProductCarousel data={featuredProducts} />}
-      <ProductList
-        data={latestProducts}
-        title="Newest Arrivals"
-      />
+      {featuredProducts.length > 0 && (
+        <ProductCarousel data={featuredProducts} />
+      )}
+      <ProductList data={latestProducts} title="Newest Arrivals" />
       <ViewAllProductsButton />
+      <DealCountdown />
+      <IconBoxes />
     </div>
   )
 }

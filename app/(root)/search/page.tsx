@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { ProductCard } from '@/core/presentation/components/product/ProductCard'
+import { ProductCard } from '@/components/shared/product/ProductCard'
 import { Pagination } from '@/components/shared/Pagination'
 import {
   getAllCategories,

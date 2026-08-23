@@ -1,7 +1,6 @@
 'use server'
 
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
-import { hashSync } from 'bcrypt-ts-edge'
 
 import { prisma } from '@/db/prisma'
 import { signIn, signOut } from '@/auth'
@@ -10,6 +9,8 @@ import {
   signUpFormSchema,
 } from '@/core/infrastructure/validators/auth'
 import { formatError } from '@/lib/utils'
+import { hash } from '@/lib/encrypt'
+import { getMyCart } from '../cart/cart.actions'
 
 export async function signInWithCredentials(
   prevState: unknown,
@@ -32,7 +33,14 @@ export async function signInWithCredentials(
   }
 }
 
-export async function signOutUser() { await signOut() }
+export async function signOutUser() { 
+  // get current users cart and delete it so it does not persist to next user
+  const currentCart = await getMyCart();
+  if (currentCart) {
+    await prisma.cart.delete({ where: { id: currentCart.id } });
+  }
+  await signOut() 
+}
 
 export async function signUp(prevState: unknown, formData: FormData) {
   try {
@@ -45,7 +53,7 @@ export async function signUp(prevState: unknown, formData: FormData) {
 
     const plainPassword = user.password
 
-    user.password = hashSync(user.password, 10)
+    user.password = await hash(user.password)
 
     await prisma.user.create({
       data: {

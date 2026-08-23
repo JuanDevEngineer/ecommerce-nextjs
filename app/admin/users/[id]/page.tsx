@@ -1,5 +1,5 @@
 import { getUserById } from '@/core/presentation/actions/user/user.actions'
-import { UpdateUserForm } from '@/core/presentation/components/user/UpdateUserForm'
+import { UpdateUserForm } from '@/components/shared/user/UpdateUserForm'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -17,8 +17,6 @@ const UpdateUserPage = async (props: {
   const user = await getUserById(id)
 
   if (!user) notFound()
-
-  console.log(user)
 
   return (
     <div className="space-y-8 max-w-lg mx-auto">
